@@ -21,6 +21,7 @@ export const usePWAInstall = () => {
     }
 
     const handler = (e: Event) => {
+      console.log('beforeinstallprompt event fired');
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
       // Stash the event so it can be triggered later.
@@ -31,6 +32,7 @@ export const usePWAInstall = () => {
     window.addEventListener('beforeinstallprompt', handler);
 
     const installedHandler = () => {
+      console.log('appinstalled event fired');
       setIsInstalled(true);
       setIsInstallable(false);
       setDeferredPrompt(null);

@@ -19,32 +19,49 @@ const SettingsPage: React.FC = () => {
       
       <div className="flex flex-col gap-8 px-4 pb-24 animate-in fade-in slide-in-from-bottom-4 duration-500">
         {/* PWA Install Section */}
-        {(isInstallable || isInstalled) && (
+        {isInstalled ? (
+          <section className="flex flex-col gap-4">
+            <h3 className="text-xs font-bold uppercase text-muted-foreground ml-1">Aplicativo</h3>
+            <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-5 flex items-center gap-4">
+              <div className="bg-emerald-500/20 p-3 rounded-2xl text-emerald-500">
+                <CheckCircle2 size={24} />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm font-bold">App Instalado</span>
+                <span className="text-xs text-muted-foreground">Você está usando a versão nativa!</span>
+              </div>
+            </div>
+          </section>
+        ) : isInstallable ? (
           <section className="flex flex-col gap-4">
             <h3 className="text-xs font-bold uppercase text-muted-foreground ml-1">Aplicativo</h3>
             <div className="bg-accent/10 border border-accent/20 rounded-2xl p-5 flex flex-col gap-4">
               <div className="flex items-center gap-4">
                 <div className="bg-accent/20 p-3 rounded-2xl text-accent">
-                  {isInstalled ? <CheckCircle2 size={24} /> : <Download size={24} />}
+                  <Download size={24} />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold">
-                    {isInstalled ? 'App Instalado' : 'Instalar TreadLog'}
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    {isInstalled 
-                      ? 'Você já está usando a versão nativa!' 
-                      : 'Acesse mais rápido pela sua tela de início.'}
-                  </span>
+                  <span className="text-sm font-bold">Instalar TreadLog</span>
+                  <span className="text-xs text-muted-foreground">Acesse mais rápido pela sua tela de início.</span>
                 </div>
               </div>
-              
-              {!isInstalled && isInstallable && (
-                <Button onClick={install} className="w-full gap-2 rounded-xl">
-                  <Download size={18} />
-                  Adicionar à Tela de Início
-                </Button>
-              )}
+              <Button onClick={install} className="w-full gap-2 rounded-xl">
+                <Download size={18} />
+                Adicionar à Tela de Início
+              </Button>
+            </div>
+          </section>
+        ) : (
+          <section className="flex flex-col gap-4">
+            <h3 className="text-xs font-bold uppercase text-muted-foreground ml-1">Aplicativo</h3>
+            <div className="bg-secondary/20 border border-border rounded-2xl p-5 flex flex-col gap-3">
+              <div className="flex items-center gap-3 text-muted-foreground">
+                <Info size={18} />
+                <span className="text-sm font-bold">Instalação PWA</span>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Para instalar o app, use a opção <span className="font-bold">"Adicionar à tela de início"</span> no menu do seu navegador.
+              </p>
             </div>
           </section>
         )}
