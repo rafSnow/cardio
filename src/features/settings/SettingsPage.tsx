@@ -1,5 +1,5 @@
 import React from 'react';
-import { Settings, Info } from 'lucide-react';
+import { Settings, Info, Download, CheckCircle2 } from 'lucide-react';
 import { PageWrapper } from '@/components/layout/PageWrapper';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { GoalSettings } from './GoalSettings';
@@ -7,13 +7,48 @@ import { ThemeToggle } from './ThemeToggle';
 import { NotificationSettings } from './NotificationSettings';
 import { DataManagement } from './DataManagement';
 import { GoalHistory } from './GoalHistory';
+import { usePWAInstall } from '@/hooks/usePWAInstall';
+import { Button } from '@/components/ui/Button';
 
 const SettingsPage: React.FC = () => {
+  const { isInstallable, isInstalled, install } = usePWAInstall();
+
   return (
     <PageWrapper>
       <PageHeader title="Configurações" icon={<Settings size={24} />} />
       
       <div className="flex flex-col gap-8 px-4 pb-24 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        {/* PWA Install Section */}
+        {(isInstallable || isInstalled) && (
+          <section className="flex flex-col gap-4">
+            <h3 className="text-xs font-bold uppercase text-muted-foreground ml-1">Aplicativo</h3>
+            <div className="bg-accent/10 border border-accent/20 rounded-2xl p-5 flex flex-col gap-4">
+              <div className="flex items-center gap-4">
+                <div className="bg-accent/20 p-3 rounded-2xl text-accent">
+                  {isInstalled ? <CheckCircle2 size={24} /> : <Download size={24} />}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-bold">
+                    {isInstalled ? 'App Instalado' : 'Instalar TreadLog'}
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    {isInstalled 
+                      ? 'Você já está usando a versão nativa!' 
+                      : 'Acesse mais rápido pela sua tela de início.'}
+                  </span>
+                </div>
+              </div>
+              
+              {!isInstalled && isInstallable && (
+                <Button onClick={install} className="w-full gap-2 rounded-xl">
+                  <Download size={18} />
+                  Adicionar à Tela de Início
+                </Button>
+              )}
+            </div>
+          </section>
+        )}
+
         <section className="flex flex-col gap-4">
           <h3 className="text-xs font-bold uppercase text-muted-foreground ml-1">Preferências</h3>
           <GoalSettings />
