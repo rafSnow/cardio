@@ -1,0 +1,6 @@
+import{c as l,R as a,j as e,t as c,o as d}from"./index-CXfF4niY.js";/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const x=l("Timer",[["line",{x1:"10",x2:"14",y1:"2",y2:"2",key:"14vaq8"}],["line",{x1:"12",x2:"15",y1:"14",y2:"11",key:"17fdiu"}],["circle",{cx:"12",cy:"14",r:"8",key:"1e1u0o"}]]);function f(...s){return c(d(s))}const u=a.forwardRef(({className:s,type:o,label:t,error:i,...n},r)=>e.jsxs("div",{className:"flex flex-col gap-1.5 w-full",children:[t&&e.jsx("label",{className:"text-sm font-medium text-foreground ml-1",children:t}),e.jsx("input",{type:o,className:f("flex h-12 w-full rounded-lg border border-input bg-card px-4 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 transition-shadow shadow-sm",i&&"border-rose-500 focus-visible:ring-rose-500",s),ref:r,...n}),i&&e.jsx("span",{className:"text-xs font-medium text-rose-500 ml-1 animate-in fade-in slide-in-from-top-1",children:i})]}));u.displayName="Input";export{u as I,x as T};
